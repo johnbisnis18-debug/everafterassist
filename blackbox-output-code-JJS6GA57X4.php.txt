@@ -1,0 +1,24 @@
+<?php
+// File koneksi.php untuk koneksi ke database MySQL (menggunakan PDO agar aman dan modern)
+
+// Konfigurasi detail database
+$host = "localhost";           // Host database, biasanya localhost
+$dbname = "everafter_assist";  // Nama database Anda
+$username = "db_user";         // Username database
+$password = "db_password";     // Password database
+
+try {
+    // Membuat koneksi PDO dengan charset UTF8 untuk mencegah masalah encoding
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+
+    // Set error mode ke Exception agar lebih mudah menangani error
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Optional: set fetch mode default ke associative array
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    // Jika gagal koneksi, tampilkan pesan error (bisa diganti dengan log error atau handling lain)
+    die("Connection failed: " . $e->getMessage());
+}
+?>
