@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Everafter Assist | Your Personal Productivity Partner</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; 
+    background: #fafafa;
+    font-family: 'Poppins', sans-serif;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    background-color: #fff;
+    box-shadow: 0 0 14px rgb(0 0 0 / 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #333;
+    user-select: none;
+  }
+
+  /* Nav Buttons */
+  nav button {
+    font-family: 'Poppins', sans-serif;
+    border-radius: 28px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    border: none;
+    padding: 10px 26px;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+  }
+
+  nav .btn-signin {
+    background: transparent;
+    border: 2px solid #222;
+    color: #222;
+  }
+  nav .btn-signin:hover {
+    background: #222;
+    color: #fff;
+  }
+
+  nav .btn-signup {
+    background: #111;
+    color: #fff;
+    box-shadow: 0 0 8px #111a;
+  }
+  nav .btn-signup:hover {
+    background: #333;
+    box-shadow: 0 0 14px #222d;
+  }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 85px 0 70px;
+    user-select: none;
+  }
+  .hero small {
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: #666;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-weight: 700;
+    font-size: 2.6rem;
+    margin: 12px 0 18px;
+    color: #111;
+    line-height: 1.1;
+  }
+  .hero p {
+    max-width: 580px;
+    margin: 0 auto 36px;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.5;
+  }
+  
+  .hero .btn-group button {
+    margin: 0 8px;
+    border-radius: 28px;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    padding: 14px 36px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.35s ease;
+  }
+  .hero .btn-getstarted {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 0 20px #333;
+  }
+  .hero .btn-getstarted:hover {
+    background: #222;
+    box-shadow: 0 0 28px #444;
+  }
+  .hero .btn-login {
+    border: 2px solid #000;
+    background: transparent;
+    color: #000;
+  }
+  .hero .btn-login:hover {
+    border-color: #444;
+    color: #444;
+  }
+
+  /* Features Section */
+  .features {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-bottom: 64px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .features h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #111;
+    text-align: center;
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  .features p {
+    color: #666;
+    text-align: center;
+    margin-bottom: 36px;
+    font-weight: 400;
+    font-size: 1rem;
+    user-select: none;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .feature-card {
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.07);
+    padding: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: default;
+  }
+  .feature-card:hover {
+    box-shadow: 0 12px 36px rgb(0 0 0 / 0.13);
+    transform: translateY(-8px);
+  }
+  .feature-icon {
+    font-size: 24px;
+    background: #eee;
+    padding: 12px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+  .feature-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .feature-desc {
+    font-weight: 300;
+    color: #555;
+    margin-bottom: 0;
+  }
+
+  /* How It Works Section */
+  .how-it-works {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+  }
+  .how-it-works h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-align: center;
+    color: #111;
+    margin-bottom: 6px;
+    user-select: none;
+  }
+  .how-it-works p {
+    color: #666;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 40px;
+    user-select: none;
+  }
+  .steps {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .step {
+    flex: 1 1 170px;
+    user-select: none;
+  }
+  .step-circle {
+    height: 48px;
+    width: 48px;
+    background: #000;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.4rem;
+    border-radius: 50%;
+    line-height: 48px;
+    text-align: center;
+    margin: 0 auto 10px auto;
+  }
+  .step-title {
+    font-weight: 600;
+    color: #222;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  /* Customer Service Button */
+  #customer-service {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 14px #222a;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+  }
+  #customer-service:hover {
+    background-color: #333;
+    transform: scale(1.1);
+  }
+
+  /* Footer */
+  footer {
+    padding: 20px 10px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #888;
+    user-select: none;
+    border-top: 1px solid #eee;
+    background: #fefefe;
+  }
+
+  /* Responsive */
+  @media (max-width: 680px) {
+    .hero h1 {
+      font-size: 2rem;
+      padding: 0 10px;
+    }
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+    .steps {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="container">
+  <div class="logo" aria-label="Everafter Assist Logo" tabindex="0">Everafter Assist</div>
+  <nav>
+    <button class="btn-signin" aria-label="Log In">Log In</button>
+    <button class="btn-signup" aria-label="Sign Up">Sign Up</button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero container" role="region" aria-labelledby="hero-title">
+    <small>Your Personal Productivity Partner</small>
+    <h1 id="hero-title">Organize Your Life with Everafter Assist</h1>
+    <p>The all-in-one personal assistant that helps you manage tasks, capture notes, and stay on top of your schedule. Simple, elegant, and powerful.</p>
+    <div class="btn-group">
+      <button class="btn-getstarted" aria-label="Get Started Free">Get Started Free ✨</button>
+      <button class="btn-login" aria-label="Log In">Log In</button>
+    </div>
+  </section>
+
+  <section class="features container" role="region" aria-labelledby="features-title">
+    <h2 id="features-title">Everything You Need to Stay Organized</h2>
+    <p>Powerful features designed to boost your productivity</p>
+    <div class="feature-grid">
+      <article class="feature-card" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">🗂️</div>
+        <h3 class="feature-title">Smart Task Management</h3>
+        <p class="feature-desc">Organize your tasks with priorities, due dates, and smart filtering.</p>
+      </article>
+      <article class="feature-card" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">📄</div>
+        <h3 class="feature-title">Quick Notes</h3>
+        <p class="feature-desc">Capture your ideas and thoughts instantly, whenever inspiration strikes.</p>
+      </article>
+      <article class="feature-card" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">📅</div>
+        <h3 class="feature-title">Integrated Calendar</h3>
+        <p class="feature-desc">Schedule events and never miss important meetings or deadlines.</p>
+      </article>
+      <article class="feature-card" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">⚡</div>
+        <h3 class="feature-title">Lightning Fast</h3>
+        <p class="feature-desc">Built for speed and efficiency to help you stay productive.</p>
+      </article>
+      <article class="feature-card" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">🔒</div>
+        <h3 class="feature-title">Secure & Private</h3>
+        <p class="feature-desc">Your data is protected and kept private at all times.</p>
+      </article>
+      <article class="feature-card" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">✨</div>
+        <h3 class="feature-title">Beautiful Interface</h3>
+        <p class="feature-desc">Clean, modern design that makes organizing a pleasure.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="how-it-works container" role="region" aria-labelledby="how-title">
+    <h2 id="how-title">How It Works</h2>
+    <p>Get started in three simple steps</p>
+    <div class="steps" role="list">
+      <div class="step" role="listitem" tabindex="0">
+        <div class="step-circle" aria-hidden="true">1</div>
+        <h3 class="step-title">Create Your Account</h3>
+      </div>
+      <div class="step" role="listitem" tabindex="0">
+        <div class="step-circle" aria-hidden="true">2</div>
+        <h3 class="step-title">Set Up Your Workspace</h3>
+      </div>
+      <div class="step" role="listitem" tabindex="0">
+        <div class="step-circle" aria-hidden="true">3</div>
+        <h3 class="step-title">Stay Productive</h3>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<button id="customer-service" aria-label="Customer Service Chat Button" title="Customer Service Chat">💬</button>
+
+<footer>
+  <div class="container">
+    &copy; 2024 Everafter Assist. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  /* Animasi sederhana untuk tombol dan alert demo */
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      if(btn.id === 'customer-service') {
+        alert('Customer Service chat will open here (live chat integration coming soon).');
+      } else {
+        alert('Authentication and dashboard functionality are currently under development.');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
